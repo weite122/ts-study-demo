@@ -1,0 +1,25 @@
+.caculator{
+    display: inline-block;
+    font-size: 2em;
+}
+.caculator .button {
+    height: 6em;
+    width: 6em;
+}
+.caculator .button.text-Clear{
+    width: 18em;
+}
+.caculator .button.text-0{
+    width: 12em;
+}
+.caculator .output{
+    border: 1px solid grey;
+    height: 3em;
+    position: relative;
+}
+
+.caculator .output span{
+    position: absolute;
+    right: .4em;
+    bottom: .4em;
+}
