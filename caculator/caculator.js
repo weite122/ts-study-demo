@@ -90,13 +90,19 @@
             else if (this.operator === "-") {
                 result = n1 - n2;
             }
-            else if (this.operator === "*") {
+            else if (this.operator === "×") {
                 result = n1 * n2;
             }
             else if (this.operator === "÷") {
                 result = n1 / n2;
             }
-            result = result.toFixed(6);
+            result = result
+                .toPrecision(12)
+                .replace(/.0+$/g, "")
+                .replace(/\.0+e/, "e");
+            if (n2 === 0) {
+                result = "不是数字";
+            }
             this.span.textContent = result;
             this.n1 = null;
             this.n2 = null;
@@ -113,11 +119,18 @@
             if ("0123456789.".indexOf(text) >= 0) {
                 this.updateNumbers(text);
             }
-            else if ("+-*÷".indexOf(text) >= 0) {
+            else if ("+-×÷".indexOf(text) >= 0) {
                 this.updateOperator(text);
             }
             else if ("=".indexOf(text) >= 0) {
                 this.updateResult();
+            }
+            else if (text === "Clear") {
+                this.n1 = null;
+                this.n2 = null;
+                this.operator = null;
+                this.result = null;
+                this.span.textContent = "0";
             }
             console.log(this.n1, this.operator, this.n2);
         };
